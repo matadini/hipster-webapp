@@ -59,4 +59,12 @@ class PersonServiceImpl implements PersonService {
 		personRepository.delete(entity);
 	}
 
+	@Override
+	public Optional<PersonDto> findById(Long personId) throws PersonServiceException {
+
+		Optional<Person> findById = personRepository.findById(personId);
+		return findById.isPresent() ? Optional.of(personToPersonDto().apply(findById.get()))
+				: Optional.empty();
+	}
+
 }

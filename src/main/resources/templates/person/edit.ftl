@@ -35,16 +35,18 @@
 
 
 
-		<form action="/person/create" method="POST">
+		<h2>Person: ${person.personId} is edited</h2>
+
+		<form action="/person/edit/${person.personId}" method="POST">
 		
 			<div class="form-group">
 				<label for="name">Name</label>
 				 <input 
-					 type="text" 
 					 id="name"
 					 name="name"
+					 type="text" 
+					 value=${person.name}
 					 class="form-control" 
-
 					 placeholder="Enter name">
 			</div>
 			
@@ -56,23 +58,22 @@
 					 id="surname"
 					 name="surname"
 					 class="form-control" 
-
+					 value=${person.surname}
 					 placeholder="Enter surname">
 			</div>
 			
 			<div class="form-group">
 				<label for="email">Email</label>
 				 <input 
-					 type="email" 
 					 id="email"
+					 type="email" 
 					 name="email"
 					 class="form-control" 
-
+					 value=${person.email}
 					 placeholder="Enter email">
 			</div>
 			
-			<input type="submit" class="btn btn-secondary" value="Send" />
-			<input type="reset" class="btn btn-danger" value="Reset" />
+			<input type="submit" class="btn btn-secondary" value="Save" />
 			
 		</form>
 

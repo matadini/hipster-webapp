@@ -13,11 +13,11 @@ interface PersonController extends SparkController {
 
 	Object getCreate(Request request, Response response);
 
-	
-	
 	Object read(Request request, Response response);
 
-	Object edit(Request request, Response response);
+	Object getEdit(Request request, Response response);
+
+	Object postEdit(Request request, Response response);
 
 	Object delete(Request request, Response response);
 

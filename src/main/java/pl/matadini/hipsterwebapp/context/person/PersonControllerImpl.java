@@ -1,12 +1,10 @@
 package pl.matadini.hipsterwebapp.context.person;
 
-import java.io.StringWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.persistence.EntityManagerFactory;
-import javax.validation.Validator;
 
 import org.pmw.tinylog.Logger;
 
@@ -14,7 +12,6 @@ import com.google.common.collect.Maps;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import pl.matadini.hipsterwebapp.context.person.dto.PersonCreateDto;
 import pl.matadini.hipsterwebapp.context.person.dto.PersonDto;
@@ -30,14 +27,13 @@ class PersonControllerImpl implements PersonController {
 
 	@Override
 	public void initialize(Service service) {
-		service.get("/person", this::home);
-
-		service.get("/person/create", this::getCreate);
 		service.post("/person/create", this::postCreate);
 
+		service.get("/person", this::home);
+		service.get("/person/create", this::getCreate);
 		service.get("/person/get-all", this::getGetAll);
-
-		service.get("/person/delete/:personId", this::delete); // route);
+		service.get("/person/edit/:personId", this::getEdit);
+		service.get("/person/delete/:personId", this::delete);
 	}
 
 	@Override
@@ -79,9 +75,20 @@ class PersonControllerImpl implements PersonController {
 	}
 
 	@Override
-	public Object edit(Request request, Response response) {
+	public Object getEdit(Request request, Response response) {
 
 		try {
+			Long personId = Long.valueOf(request.params("personId"));
+
+			PersonService service = PersonServiceFactory.create(entityManagerFactory);
+			Optional<PersonDto> findById = service.findById(personId);
+			PersonDto personDto = findById.get();
+
+			Map<Object, Object> newHashMap = Maps.newHashMap();
+			newHashMap.put("person", personDto);
+
+			Template template = configuration.getTemplate("templates/person/edit.ftl");
+			template.process(newHashMap, response.raw().getWriter());
 
 		} catch (Exception ex) {
 
