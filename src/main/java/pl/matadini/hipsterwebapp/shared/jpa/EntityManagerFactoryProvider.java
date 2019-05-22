@@ -1,0 +1,29 @@
+package pl.matadini.hipsterwebapp.shared.jpa;
+
+import java.util.Map;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.google.common.collect.Maps;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class EntityManagerFactoryProvider {
+
+	public static EntityManagerFactory createEntityManagerFactoryH2() {
+
+		Map<String, String> properties = Maps.newHashMap();
+		properties.put("javax.persistence.jdbc.driver", "org.h2.Driver");
+		properties.put("javax.persistence.jdbc.url", "jdbc:h2:mem:test");
+		properties.put("javax.persistence.jdbc.user", "sa");
+		properties.put("javax.persistence.jdbc.password", "");
+		properties.put("show_sql", "true");
+		properties.put("eclipselink.ddl-generation", "create-tables");
+		properties.put("eclipselink.ddl-generation.output-mode", "database");
+
+		return Persistence.createEntityManagerFactory("H2PU", properties);
+	}
+}
