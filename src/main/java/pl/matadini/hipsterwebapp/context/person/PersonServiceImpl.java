@@ -1,6 +1,7 @@
 package pl.matadini.hipsterwebapp.context.person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -48,6 +49,14 @@ class PersonServiceImpl implements PersonService {
 				.surname(x.getSurname())
 				.personId(x.getPersonId())
 				.build();
+	}
+
+	@Override
+	public void delete(Long personId) throws PersonServiceException {
+
+		Optional<Person> findById = personRepository.findById(personId);
+		Person entity = findById.get();
+		personRepository.delete(entity);
 	}
 
 }

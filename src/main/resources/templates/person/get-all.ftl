@@ -69,8 +69,8 @@ function editPerson(id) {
 					<td>${person.name}</td>
 					<td>${person.surname}</td>
 					<td>${person.email}</td>
-					<td><a href="" onclick="editPerson(${person.personId})" class="btn btn-primary">Edit</a></td>
-					<td><a href="" onclick="deletePerson(${person.personId})"  class="btn btn-danger">Delete</a></td>
+					<td><a href="/person/edit/${person.personId}" class="btn btn-secondary">Edit</a></td>
+					<td><a href="/person/delete/${person.personId}" class="btn btn-danger">Delete</a></td>
 				</tr>
 				</#list>
 

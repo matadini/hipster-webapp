@@ -11,4 +11,6 @@ interface PersonService {
 	Long create(PersonCreateDto dto) throws PersonServiceException;
 
 	java.util.List<PersonDto> getAll() throws PersonServiceException;
+	
+	void delete(Long personId) throws PersonServiceException;
 }

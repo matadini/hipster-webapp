@@ -37,7 +37,7 @@ class PersonControllerImpl implements PersonController {
 
 		service.get("/person/get-all", this::getGetAll);
 
-		service.delete("/person", this::delete); // route);
+		service.get("/person/delete/:personId", this::delete); // route);
 	}
 
 	@Override
@@ -60,20 +60,16 @@ class PersonControllerImpl implements PersonController {
 			/*
 			 * Prepare and return view
 			 */
-			StringWriter out = new StringWriter();
-
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("info", "Created user ID: " + personId);
 
 			Template template = configuration.getTemplate("templates/general/action-success.ftl");
-			template.process(map, out);
-
-			return out;
+			template.process(map, response.raw().getWriter());
 
 		} catch (Exception e) {
 			Logger.error(e);
 		}
-		return null;
+		return response;
 	}
 
 	@Override
@@ -83,16 +79,33 @@ class PersonControllerImpl implements PersonController {
 	}
 
 	@Override
-	public Object update(Request request, Response response) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object edit(Request request, Response response) {
+
+		try {
+
+		} catch (Exception ex) {
+
+		}
+		return response;
 	}
 
 	@Override
 	public Object delete(Request request, Response response) {
 
-		Logger.info(request.queryParams());
-		return null;
+		try {
+
+			Long personId = Long.valueOf(request.params("personId"));
+
+			PersonService service = PersonServiceFactory.create(entityManagerFactory);
+			service.delete(personId);
+
+			response.redirect("/person/get-all");
+
+		} catch (Exception ex) {
+
+		}
+
+		return response;
 	}
 
 	@Override
@@ -106,41 +119,39 @@ class PersonControllerImpl implements PersonController {
 			newHashMap.put("persons", all);
 			newHashMap.put("info", all.isEmpty() ? "No persons in database" : "Persons:");
 
-			StringWriter out = new StringWriter();
 			Template template = configuration.getTemplate("templates/person/get-all.ftl");
-			template.process(newHashMap, out);
+			template.process(newHashMap, response.raw().getWriter());
 
-			return out;
 		} catch (Exception ex) {
 			Logger.error(ex);
 		}
-		return null;
+		return response;
 	}
 
 	@Override
 	public Object getCreate(Request request, Response response) {
 		try {
-			StringWriter writer = new StringWriter();
+
 			Template template = configuration.getTemplate("templates/person/create.ftl");
-			template.process(null, writer);
-			return writer;
+			template.process(null, response.raw().getWriter());
+
 		} catch (Exception e) {
 			Logger.error(e);
 		}
-		return null;
+		return response;
 	}
 
 	@Override
 	public Object home(Request request, Response response) {
 		try {
-			StringWriter writer = new StringWriter();
+
 			Template template = configuration.getTemplate("templates/person/home.ftl");
-			template.process(null, writer);
-			return writer;
+			template.process(null, response.raw().getWriter());
+
 		} catch (Exception e) {
 			Logger.error(e);
 		}
-		return null;
+		return response;
 	}
 
 }
