@@ -1,10 +1,9 @@
 package pl.matadini.hipsterwebapp.context.person;
 
-import java.awt.List;
 import java.util.Optional;
 
-import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 import pl.matadini.hipsterwebapp.context.person.dto.PersonDto;
+import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 
 interface PersonService {
 

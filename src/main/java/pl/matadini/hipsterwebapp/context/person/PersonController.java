@@ -1,9 +1,8 @@
 package pl.matadini.hipsterwebapp.context.person;
 
-import spark.Response;
-
 import pl.matadini.hipsterwebapp.shared.spark.SparkController;
 import spark.Request;
+import spark.Response;
 
 interface PersonController extends SparkController {
 

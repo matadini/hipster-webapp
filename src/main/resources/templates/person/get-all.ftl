@@ -32,8 +32,6 @@ function editPerson(id) {
 
 				<ul class="navbar-nav mr-auto">
 
-					<li class="nav-item"><a class="nav-link" href="/person">Home
-							<span class="sr-only">(current)</span>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="/person/create">Create</a>

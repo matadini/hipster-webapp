@@ -1,9 +1,6 @@
 package pl.matadini.hipsterwebapp.context.person;
 
 import javax.persistence.EntityManagerFactory;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import freemarker.template.Configuration;
 import lombok.AccessLevel;

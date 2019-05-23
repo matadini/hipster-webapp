@@ -11,8 +11,8 @@ import javax.validation.Validator;
 import org.modelmapper.ModelMapper;
 
 import lombok.Builder;
-import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 import pl.matadini.hipsterwebapp.context.person.dto.PersonDto;
+import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 
 @Builder
 class PersonServiceImpl implements PersonService {

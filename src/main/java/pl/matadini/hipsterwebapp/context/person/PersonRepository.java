@@ -1,7 +1,6 @@
 package pl.matadini.hipsterwebapp.context.person;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import pl.matadini.hipsterwebapp.shared.jpa.JpaRepository;
 

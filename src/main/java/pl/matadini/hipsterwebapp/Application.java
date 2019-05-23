@@ -1,10 +1,16 @@
 package pl.matadini.hipsterwebapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
+
+import com.google.common.collect.Lists;
 
 import freemarker.template.Configuration;
 import freemarker.template.Version;
 import pl.matadini.hipsterwebapp.context.person.PersonFacade;
+import pl.matadini.hipsterwebapp.context.user.UserFacade;
 import pl.matadini.hipsterwebapp.shared.jpa.EntityManagerFactoryProvider;
 import pl.matadini.hipsterwebapp.shared.spark.SparkController;
 import spark.Service;
@@ -20,7 +26,10 @@ public class Application {
 
 		Service service = Service.ignite().port(8080);
 
-		SparkController personController = PersonFacade.create(configuration, entityManagerFactoryH2);
-		personController.initialize(service);
+		List<SparkController> controllers = Lists.newArrayList(
+				UserFacade.create(),
+				PersonFacade.create(configuration, entityManagerFactoryH2));
+		controllers.forEach(item -> item.initialize(service));
+
 	}
 }
