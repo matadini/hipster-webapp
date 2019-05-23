@@ -1,6 +1,5 @@
-package pl.matadini.hipsterwebapp;
+package pl.matadini.hipsterwebapp.application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -15,12 +14,12 @@ import pl.matadini.hipsterwebapp.shared.jpa.EntityManagerFactoryProvider;
 import pl.matadini.hipsterwebapp.shared.spark.SparkController;
 import spark.Service;
 
-public class Application {
+public class Main {
 
 	public static void main(String[] args) {
 
 		final Configuration configuration = new Configuration(new Version(2, 3, 0));
-		configuration.setClassForTemplateLoading(Application.class, "/");
+		configuration.setClassForTemplateLoading(Main.class, "/");
 
 		EntityManagerFactory entityManagerFactoryH2 = EntityManagerFactoryProvider.createEntityManagerFactoryH2();
 

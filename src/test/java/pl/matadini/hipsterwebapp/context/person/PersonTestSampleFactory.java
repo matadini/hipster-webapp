@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class PersonTestSample {
+class PersonTestSampleFactory {
 	static PersonSaveDto createPersonSaveDtoSampleJanuszNosacz() {
 		PersonSaveDto build = PersonSaveDto.builder()
 				.name("Janusz")

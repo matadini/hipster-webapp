@@ -3,5 +3,7 @@
 	<persistence-unit name="H2PU">
 		<class>pl.matadini.hipsterwebapp.context.person.Person</class>
 		<class>pl.matadini.hipsterwebapp.context.blog.author.Author</class>
+		<class>pl.matadini.hipsterwebapp.context.blog.article.Article</class>
+		<class>pl.matadini.hipsterwebapp.context.blog.article.ArticleAuthor</class>
 	</persistence-unit>
 </persistence>

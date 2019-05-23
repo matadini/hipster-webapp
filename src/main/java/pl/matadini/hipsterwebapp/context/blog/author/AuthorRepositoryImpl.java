@@ -4,49 +4,49 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import lombok.AllArgsConstructor;
+import pl.matadini.hipsterwebapp.shared.jpa.JpaRepositoryUtil;
 
 @AllArgsConstructor
 class AuthorRepositoryImpl implements AuthorRepository {
-	
+
 	EntityManager entityManager;
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return null;
+		String qlString = "select count(a.authorId) from Author a";
+		TypedQuery<Long> query = entityManager.createQuery(qlString, Long.class);
+		return query.getSingleResult();
 	}
 
 	@Override
 	public void delete(Author entity) {
-		// TODO Auto-generated method stub
-		
+		JpaRepositoryUtil.delete(entity, entityManager);
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public List<Author> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String qlString = "select a from Author a order by a.authorId";
+		TypedQuery<Author> query = entityManager.createQuery(qlString, Author.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public Optional<Author> findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(entityManager.find(Author.class, id));
 	}
 
 	@Override
 	public Author save(Author entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return JpaRepositoryUtil.merge(entity, entityManager);
 	}
-	
-	
+
 }

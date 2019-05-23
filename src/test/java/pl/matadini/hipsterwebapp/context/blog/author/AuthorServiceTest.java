@@ -12,7 +12,8 @@ class AuthorServiceTest extends H2Test {
 	AuthorService service;
 
 	@BeforeEach
-	void test() {
+	@Override
+	protected void beforeEach() {
 		super.beforeEach();
 		service = AuthorServiceFactory.create(entityManagerFactory);
 	}
@@ -26,7 +27,7 @@ class AuthorServiceTest extends H2Test {
 					.name("author-name")
 					.surname("author-surname")
 					.build();
-			
+
 			service.addAuthor(dto);
 		});
 

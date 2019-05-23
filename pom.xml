@@ -147,7 +147,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass> pl.matadini.hipsterwebapp.Application</mainClass>
+							<mainClass> pl.matadini.hipsterwebapp.application.Main</mainClass>
 							<classpathPrefix>lib/</classpathPrefix>
 						</manifest>
 					</archive>

@@ -1,7 +1,4 @@
-package pl.matadini.hipsterwebapp.context.blog.author;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+package pl.matadini.hipsterwebapp.context.blog.article;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,13 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
 @Table(name = "authors")
-public class Author {
+class ArticleAuthor {
 
 	@Id
 	@Column(name = "author_id", nullable = false, unique = true)
@@ -29,14 +24,4 @@ public class Author {
 
 	@Column(name = "surname", nullable = false)
 	String surname;
-
-	LocalDate birthDate;
-
-	public Author(String name, String surname, LocalDate birthDate) {
-		super();
-		this.name = name;
-		this.surname = surname;
-		this.birthDate = birthDate;
-	}
-
 }

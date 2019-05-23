@@ -24,7 +24,7 @@ class PersonServiceTest extends H2Test {
 	@Test
 	void testCreate() throws PersonServiceException {
 		// given
-		PersonSaveDto build = PersonTestSample.createPersonSaveDtoSampleJanuszNosacz();
+		PersonSaveDto build = PersonTestSampleFactory.createPersonSaveDtoSampleJanuszNosacz();
 
 		// when
 		Long create = service.create(build);
@@ -37,11 +37,11 @@ class PersonServiceTest extends H2Test {
 	void testUpdate() throws PersonServiceException {
 
 		// given
-		PersonSaveDto dto = PersonTestSample.createPersonSaveDtoSampleJanuszNosacz();
+		PersonSaveDto dto = PersonTestSampleFactory.createPersonSaveDtoSampleJanuszNosacz();
 		Long personId = service.create(dto);
 
 		// when
-		PersonSaveDto dtoUpdate = PersonTestSample.createPersonSaveDtoSampleJanuszNosaczUpdate();
+		PersonSaveDto dtoUpdate = PersonTestSampleFactory.createPersonSaveDtoSampleJanuszNosaczUpdate();
 		service.update(personId, dtoUpdate);
 
 		// then
