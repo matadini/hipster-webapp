@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
+import javax.swing.text.AbstractDocument.Content;
 
 import org.pmw.tinylog.Logger;
 
@@ -15,6 +16,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.Builder;
 import pl.matadini.hipsterwebapp.context.blog.article.dto.ArticleAuthorDto;
+import pl.matadini.hipsterwebapp.context.blog.article.dto.ArticleSaveDto;
 import spark.Request;
 import spark.Response;
 import spark.Service;
@@ -29,6 +31,8 @@ class ArticleControllerImpl implements ArticleController {
 	public void initialize(Service service) {
 		service.get("/article/", this::home);
 		service.get("/article/create", this::createGet);
+
+		service.post("/article/create", this::createPost);
 	}
 
 	@Override
@@ -88,8 +92,28 @@ class ArticleControllerImpl implements ArticleController {
 
 	@Override
 	public Object createPost(Request request, Response response) {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+
+			String title = request.queryParams("title");
+			String content = request.queryParams("content");
+			Long articleAuthorId = Long.valueOf(request.queryParams("authors-id"));
+
+			ArticleSaveDto data = ArticleSaveDto.builder()
+					.title(title)
+					.content(content)
+					.articleAuthorId(articleAuthorId)
+					.build();
+
+			ArticleService service = ArticleServiceFactory.create(entityManagerFactory);
+			service.createArticle(articleAuthorId, data);
+
+			Logger.info("{} {} {}", title, content, articleAuthorId);
+
+		} catch (Exception e) {
+
+		}
+		return response;
 	}
 
 }

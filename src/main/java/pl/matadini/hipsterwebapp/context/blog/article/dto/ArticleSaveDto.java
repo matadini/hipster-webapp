@@ -1,6 +1,7 @@
 package pl.matadini.hipsterwebapp.context.blog.article.dto;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Builder;
 import lombok.Value;
@@ -14,4 +15,7 @@ public class ArticleSaveDto {
 
 	@NotEmpty
 	String content;
+	
+	@NotNull
+	Long articleAuthorId;
 }

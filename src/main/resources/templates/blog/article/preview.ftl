@@ -4,19 +4,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-
-<script>
-jQuery(document).ready(function($){
-  op = function(obj) {
-    $(obj).stop().slideToggle();
-    };
-});
-</script>
-
 <body>
 
 	<div class="container">
@@ -39,20 +29,6 @@ jQuery(document).ready(function($){
 
 		<h2>Add new author</h2>
 
-
-			<div class="form-group">
-				<#list authors as item>
-					<div class="form-group">
-						<a href="#" onClick="op('#${item.articleAuthorId}');">${item.name}</a>
-						<div id="${item.articleAuthorId}" style="display: none;">
-							Ukryta tresc: ${item.surname}
-						</div>
-					</div>
-				</#list>
-			</div>
-
-
-					
 		<form action="/article/create" method="POST">
 		
 			<div class="form-group">

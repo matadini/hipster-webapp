@@ -75,16 +75,16 @@ class AuthorControllerImpl implements AuthorController {
 			 * Parse data from client 
 			 */
 
-			String queryParams = request.queryParams("birth-date");
-			String queryParams2 = request.queryParams("name");
-			String queryParams3 = request.queryParams("email");
-			String queryParams4 = request.queryParams("surname");
+			String birthDate = request.queryParams("birth-date");
+			String name = request.queryParams("name");
+			String email = request.queryParams("email");
+			String surname = request.queryParams("surname");
 			
 			AuthorSaveDto dto = AuthorSaveDto.builder()
-					.name(queryParams2)
-					.email(queryParams3)
-					.surname(queryParams4)
-					.birthDate(LocalDate.parse(queryParams))
+					.name(name)
+					.email(email)
+					.surname(surname)
+					.birthDate(LocalDate.parse(birthDate))
 					.build();
 
 			AuthorService service = AuthorServiceFactory.create(entityManagerFactory);
