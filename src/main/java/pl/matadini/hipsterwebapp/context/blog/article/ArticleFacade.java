@@ -1,4 +1,4 @@
-package pl.matadini.hipsterwebapp.context.person;
+package pl.matadini.hipsterwebapp.context.blog.article;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -8,14 +8,13 @@ import lombok.NoArgsConstructor;
 import pl.matadini.hipsterwebapp.shared.spark.SparkController;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class PersonFacade {
+public class ArticleFacade {
 
 	public static SparkController create(EntityManagerFactory entityManagerFactory, Configuration configuration) {
-
-		return PersonControllerImpl.builder()
+		
+		return ArticleControllerImpl.builder()
 				.configuration(configuration)
 				.entityManagerFactory(entityManagerFactory)
 				.build();
 	}
-
 }

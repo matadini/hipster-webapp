@@ -14,7 +14,9 @@ import javax.persistence.Table;
 
 import com.google.common.collect.Sets;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Read-only entity
@@ -24,6 +26,8 @@ import lombok.Data;
  */
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "authors")
 class ArticleAuthor {
 

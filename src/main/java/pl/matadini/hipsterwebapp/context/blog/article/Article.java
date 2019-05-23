@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Article {
+class Article {
 
 	@Id
 	@Column(nullable = false, unique = true)

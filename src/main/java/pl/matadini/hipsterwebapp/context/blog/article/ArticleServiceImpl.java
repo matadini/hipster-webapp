@@ -8,7 +8,11 @@ import javax.validation.Validator;
 
 import org.modelmapper.ModelMapper;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
 import lombok.Builder;
+import pl.matadini.hipsterwebapp.context.blog.article.dto.ArticleAuthorDto;
 import pl.matadini.hipsterwebapp.context.blog.article.dto.ArticleSaveDto;
 
 @Builder
@@ -32,9 +36,9 @@ class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<ArticleAuthor> getArticleAuthors() throws ArticleServiceException {
+	public List<ArticleAuthorDto> getArticleAuthors() throws ArticleServiceException {
 		// TODO Auto-generated method stub
-		return null;
+		return null; 
 	}
 
 }

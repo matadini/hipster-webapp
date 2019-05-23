@@ -13,7 +13,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<a class="navbar-brand" href="/author/">Hipster-WebApp</a>
+			<a class="navbar-brand" href="/author/">Hipster-WebApp Authors</a>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
