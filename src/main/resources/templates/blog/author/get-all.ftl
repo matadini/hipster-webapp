@@ -47,13 +47,13 @@
 				<#list authors as author>
 
 				<tr>
-					<td>${author.personId}</td>
+					<td>${author.authorId}</td>
 					<td>${author.name}</td>
 					<td>${author.surname}</td>
 					<td>${author.email}</td>+
 					<td>${author.birthDate}</td>
-					<td><a href="/person/edit/${person.personId}" class="btn btn-secondary">Edit</a></td>
-					<td><a href="/person/delete/${person.personId}" class="btn btn-danger">Delete</a></td>
+					<td><a href="/author/edit/${author.authorId}" class="btn btn-secondary">Edit</a></td>
+					<td><a href="/author/delete/${author.authorId}" class="btn btn-danger">Delete</a></td>
 				</tr>
 				</#list>
 

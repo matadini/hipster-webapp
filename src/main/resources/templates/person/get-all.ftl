@@ -26,7 +26,7 @@ function editPerson(id) {
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<a class="navbar-brand" href="/person">Hipster-WebApp</a>
+			<a class="navbar-brand" href="/person/">Hipster-WebApp</a>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 

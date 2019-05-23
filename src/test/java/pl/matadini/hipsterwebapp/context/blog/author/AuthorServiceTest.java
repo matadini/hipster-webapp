@@ -1,9 +1,12 @@
 package pl.matadini.hipsterwebapp.context.blog.author;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorDto;
 import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorSaveDto;
 import pl.matadini.hipsterwebapp.shared.test.H2Test;
 
@@ -23,10 +26,7 @@ class AuthorServiceTest extends H2Test {
 
 		Assertions.assertThrows(AuthorServiceException.class, () -> {
 
-			AuthorSaveDto dto = AuthorSaveDto.builder()
-					.name("author-name")
-					.surname("author-surname")
-					.build();
+			AuthorSaveDto dto = AuthorTestSampleFactory.createInvalidSaveDto();
 
 			service.addAuthor(dto);
 		});
@@ -35,13 +35,38 @@ class AuthorServiceTest extends H2Test {
 
 	@Test
 	void create_whenCorrectDto_thenCreateAuthor() throws AuthorServiceException {
-		AuthorSaveDto dto = AuthorSaveDto.builder()
-				.name("author-name")
-				.surname("author-surname")
-				.build();
+
+		AuthorSaveDto dto = AuthorTestSampleFactory.createStandardSaveDto();
 
 		Long addAuthor = service.addAuthor(dto);
 		Assertions.assertNotNull(addAuthor);
 	}
 
+	@Test
+	void getAll_whenNoAuthorsInDb_thenReturnEmptyList() throws AuthorServiceException {
+
+		// given
+
+		// when
+		List<AuthorDto> all = service.getAll();
+
+		// then
+		Assertions.assertNotNull(all);
+		Assertions.assertTrue(all.isEmpty());
+	}
+
+	@Test
+	void getAll_whenAuthorsInDb_thenReturnThem() throws AuthorServiceException {
+
+		// given
+		service.addAuthor(AuthorTestSampleFactory.createStandardSaveDto());
+		service.addAuthor(AuthorTestSampleFactory.createStandardSaveDto());
+
+		// when
+		List<AuthorDto> all = service.getAll();
+		
+		// then
+		Assertions.assertEquals(2, all.size());
+
+	}
 }

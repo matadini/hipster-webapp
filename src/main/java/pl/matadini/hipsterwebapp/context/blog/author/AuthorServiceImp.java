@@ -2,15 +2,15 @@ package pl.matadini.hipsterwebapp.context.blog.author;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.modelmapper.ModelMapper;
 
-import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorDto;
 import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorSaveDto;
 
@@ -36,13 +36,11 @@ class AuthorServiceImp implements AuthorService {
 
 	@Override
 	public List<AuthorDto> getAll() throws AuthorServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		Function<? super Author, ? extends AuthorDto> authorToAuthorDto = AuthorUtil.authorToAuthorDto();
+		return authorRepository.findAll()
+				.stream()
+				.map(authorToAuthorDto)
+				.collect(Collectors.toList());
 	}
-
-}
-
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-class AuthorUtil {
 
 }

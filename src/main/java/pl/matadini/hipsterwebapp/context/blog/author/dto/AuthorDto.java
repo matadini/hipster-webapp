@@ -1,10 +1,12 @@
 package pl.matadini.hipsterwebapp.context.blog.author.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+import lombok.Builder;
 import lombok.Value;
 
 @Value
+@Builder
 public class AuthorDto {
 	Long authorId;
 
@@ -12,5 +14,7 @@ public class AuthorDto {
 
 	String surname;
 
-	LocalDateTime createDate;
+	String email;
+	
+	LocalDate birthDate;
 }

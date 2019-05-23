@@ -69,7 +69,7 @@
 				<input type="date" 
 					id="birth-date" 
 					class="form-control" 
-					name="birthDate"
+					name="birth-date"
 					value="2018-07-22">
 			</div>
 			

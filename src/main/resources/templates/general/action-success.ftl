@@ -13,19 +13,15 @@
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<a class="navbar-brand" href="/person">Hipster-WebApp</a>
+			<a class="navbar-brand" href="${link}">Hipster-WebApp</a>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<ul class="navbar-nav mr-auto">
 
-
-
-					<li class="nav-item"><a class="nav-link" href="/person/create">Create</a>
-					</li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/person/get-all">Get All</a></li>
+					<li class="nav-item"><a class="nav-link" href="${link}create">Create</a></li>
+					<li class="nav-item"><a class="nav-link"href="${link}get-all">Get All</a></li>
+					
 				</ul>
 
 			</div>

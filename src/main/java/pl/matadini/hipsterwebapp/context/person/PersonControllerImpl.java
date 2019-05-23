@@ -31,7 +31,7 @@ class PersonControllerImpl implements PersonController {
 		service.post("/person/create", this::postCreate);
 		service.post("/person/edit/:personId", this::postEdit);
 
-		service.get("/person", this::home);
+		service.get("/person/", this::home);
 		service.get("/person/create", this::getCreate);
 		service.get("/person/get-all", this::getGetAll);
 		service.get("/person/edit/:personId", this::getEdit);
@@ -60,7 +60,8 @@ class PersonControllerImpl implements PersonController {
 			 */
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("info", "Created user ID: " + personId);
-
+			map.put("link", "/person"); 
+			
 			Template template = configuration.getTemplate("templates/general/action-success.ftl");
 			template.process(map, response.raw().getWriter());
 
@@ -189,7 +190,8 @@ class PersonControllerImpl implements PersonController {
 			 */
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("info", "Edition saved successfuly");
-
+			map.put("link", "/person"); 
+			
 			Template template = configuration.getTemplate("templates/general/action-success.ftl");
 			template.process(map, response.raw().getWriter());
 			

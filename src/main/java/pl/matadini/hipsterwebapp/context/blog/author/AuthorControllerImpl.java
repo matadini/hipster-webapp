@@ -1,5 +1,7 @@
 package pl.matadini.hipsterwebapp.context.blog.author;
 
+import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.Builder;
 import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorDto;
+import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorSaveDto;
 import spark.Request;
 import spark.Response;
 import spark.Service;
@@ -37,8 +40,11 @@ class AuthorControllerImpl implements AuthorController {
 	public Object home(Request request, Response response) {
 
 		try {
+
+			PrintWriter writer = response.raw().getWriter();
+
 			Template template = configuration.getTemplate("templates/blog/author/home.ftl");
-			template.process(null, response.raw().getWriter());
+			template.process(null, writer);
 
 		} catch (Exception e) {
 			Logger.error(e);
@@ -49,8 +55,12 @@ class AuthorControllerImpl implements AuthorController {
 	@Override
 	public Object createGet(Request request, Response response) {
 		try {
+
+			PrintWriter writer = response.raw().getWriter();
+
 			Template template = configuration.getTemplate("templates/blog/author/create.ftl");
-			template.process(null, response.raw().getWriter());
+			template.process(null, writer);
+
 		} catch (Exception e) {
 			Logger.error(e);
 		}
@@ -61,6 +71,35 @@ class AuthorControllerImpl implements AuthorController {
 	public Object createPost(Request request, Response response) {
 		try {
 
+			/*
+			 * Parse data from client 
+			 */
+
+			String queryParams = request.queryParams("birth-date");
+			String queryParams2 = request.queryParams("name");
+			String queryParams3 = request.queryParams("email");
+			String queryParams4 = request.queryParams("surname");
+			
+			AuthorSaveDto dto = AuthorSaveDto.builder()
+					.name(queryParams2)
+					.email(queryParams3)
+					.surname(queryParams4)
+					.birthDate(LocalDate.parse(queryParams))
+					.build();
+
+			AuthorService service = AuthorServiceFactory.create(entityManagerFactory);
+			Long addAuthor = service.addAuthor(dto);
+
+			/*
+			 * Prepare view
+			 */
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("info", "Created user ID: " + addAuthor);
+			map.put("link", "/author/"); 
+			
+			Template template = configuration.getTemplate("templates/general/action-success.ftl");
+			template.process(map, response.raw().getWriter());
+			
 		} catch (Exception e) {
 			Logger.error(e);
 		}
@@ -78,8 +117,11 @@ class AuthorControllerImpl implements AuthorController {
 			data.put("authors", all);
 			data.put("info", all.isEmpty() ? "No authors in database" : "Author list");
 
+			PrintWriter writer = response.raw().getWriter();
+
 			Template template = configuration.getTemplate("templates/blog/author/get-all.ftl");
-			template.process(null, response.raw().getWriter());
+			template.process(data, writer);
+
 		} catch (Exception e) {
 			Logger.error(e);
 		}
