@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name = "authors")
-public class Author {
+class Author {
 
 	@Id
 	@Column(name = "author_id", nullable = false, unique = true)
@@ -30,6 +30,10 @@ public class Author {
 	@Column(name = "surname", nullable = false)
 	String surname;
 
+	@Column(name = "email")
+	String email;
+
+	@Column(name = "birth_date", nullable = false)
 	LocalDate birthDate;
 
 	public Author(String name, String surname, LocalDate birthDate) {

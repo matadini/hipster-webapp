@@ -18,6 +18,8 @@ public class AuthorSaveDto {
 	@NotEmpty
 	String surname;
 
+	String email;
+
 	@NotNull
 	LocalDate birthDate;
 }

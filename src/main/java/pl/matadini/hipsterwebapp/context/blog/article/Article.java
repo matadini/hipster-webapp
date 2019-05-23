@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -27,9 +26,9 @@ public class Article {
 	@Column(nullable = false)
 	String content;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "author_id")
+	@JoinColumn(name = "author_id", nullable = false)
 	ArticleAuthor articleAuthor;
 
 }

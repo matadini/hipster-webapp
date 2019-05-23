@@ -1,4 +1,4 @@
-package pl.matadini.hipsterwebapp.application;
+package pl.matadini.hipsterwebapp;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 
 import freemarker.template.Configuration;
 import freemarker.template.Version;
+import pl.matadini.hipsterwebapp.context.blog.author.AuthorFacade;
 import pl.matadini.hipsterwebapp.context.person.PersonFacade;
 import pl.matadini.hipsterwebapp.context.user.UserFacade;
 import pl.matadini.hipsterwebapp.shared.jpa.EntityManagerFactoryProvider;
@@ -27,6 +28,7 @@ public class Main {
 
 		List<SparkController> controllers = Lists.newArrayList(
 				UserFacade.create(),
+				AuthorFacade.create(entityManagerFactoryH2, configuration),
 				PersonFacade.create(configuration, entityManagerFactoryH2));
 		controllers.forEach(item -> item.initialize(service));
 

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet"
@@ -8,41 +7,25 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-
-<script type="text/javascript">
-
-function deletePerson(id) {
-	alert("delete person: " + id);
-}
-
-function editPerson(id) {
-	alert("Edit person: " + id);
-}
-
-</script>
 <body>
 
 	<div class="container">
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<a class="navbar-brand" href="/person">Hipster-WebApp</a>
+			<a class="navbar-brand" href="/author/">Hipster-WebApp</a>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<ul class="navbar-nav mr-auto">
 
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link" href="/person/create">Create</a>
-					</li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/person/get-all">Get All</a></li>
+					<li class="nav-item"><a class="nav-link" href="/author/create">Create author</a></li>
+					<li class="nav-item"><a class="nav-link"href="/author/get-all">Author list</a></li>
 				</ul>
 
 			</div>
 		</nav>
+
 
 		<h3>${info}</h3>
 
@@ -50,23 +33,25 @@ function editPerson(id) {
 
 			<thead>
 				<tr>
-					<th scope="col">Person ID</th>
+					<th scope="col">Author ID</th>
 					<th scope="col">Name</th>
 					<th scope="col">Surname</th>
 					<th scope="col">E-mail</th>
+					<th scope="col">Birth date</th>
 					<th scope="col"></th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<#list persons as person>
+				<#list authors as author>
 
 				<tr>
-					<td>${person.personId}</td>
-					<td>${person.name}</td>
-					<td>${person.surname}</td>
-					<td>${person.email}</td>
+					<td>${author.personId}</td>
+					<td>${author.name}</td>
+					<td>${author.surname}</td>
+					<td>${author.email}</td>+
+					<td>${author.birthDate}</td>
 					<td><a href="/person/edit/${person.personId}" class="btn btn-secondary">Edit</a></td>
 					<td><a href="/person/delete/${person.personId}" class="btn btn-danger">Delete</a></td>
 				</tr>
@@ -75,6 +60,5 @@ function editPerson(id) {
 			</tbody>
 		</table>
 	</div>
-
 </body>
 </html>
