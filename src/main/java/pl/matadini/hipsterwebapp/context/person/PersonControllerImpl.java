@@ -13,7 +13,7 @@ import com.google.common.collect.Maps;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.Builder;
-import pl.matadini.hipsterwebapp.context.person.dto.PersonCreateDto;
+import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 import pl.matadini.hipsterwebapp.context.person.dto.PersonDto;
 import spark.Request;
 import spark.Response;
@@ -27,7 +27,9 @@ class PersonControllerImpl implements PersonController {
 
 	@Override
 	public void initialize(Service service) {
+
 		service.post("/person/create", this::postCreate);
+		service.post("/person/edit/:personId", this::postEdit);
 
 		service.get("/person", this::home);
 		service.get("/person/create", this::getCreate);
@@ -44,7 +46,7 @@ class PersonControllerImpl implements PersonController {
 			/*
 			 * Validate data and create new person
 			 */
-			PersonCreateDto dto = PersonCreateDto.builder()
+			PersonSaveDto dto = PersonSaveDto.builder()
 					.name(request.queryParams("name"))
 					.email(request.queryParams("email"))
 					.surname(request.queryParams("surname"))
@@ -157,6 +159,42 @@ class PersonControllerImpl implements PersonController {
 
 		} catch (Exception e) {
 			Logger.error(e);
+		}
+		return response;
+	}
+
+	@Override
+	public Object postEdit(Request request, Response response) {
+		try {
+			
+			/*
+			 * Get data from client
+			 */
+			Long personId = Long.valueOf(request.params("personId"));
+
+			PersonSaveDto dto = PersonSaveDto.builder()
+					.name(request.queryParams("name"))
+					.email(request.queryParams("email"))
+					.surname(request.queryParams("surname"))
+					.build();
+
+			/*
+			 * Update  
+			 */
+			PersonService service = PersonServiceFactory.create(entityManagerFactory);
+			service.update(personId, dto);
+			
+			/*
+			 * Prepare and return view
+			 */
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("info", "Edition saved successfuly");
+
+			Template template = configuration.getTemplate("templates/general/action-success.ftl");
+			template.process(map, response.raw().getWriter());
+			
+		} catch (Exception ex) {
+			Logger.error(ex);
 		}
 		return response;
 	}

@@ -1,12 +1,13 @@
 package pl.matadini.hipsterwebapp.context.person;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import pl.matadini.hipsterwebapp.context.person.dto.PersonCreateDto;
+import pl.matadini.hipsterwebapp.context.person.dto.PersonDto;
+import pl.matadini.hipsterwebapp.context.person.dto.PersonSaveDto;
 import pl.matadini.hipsterwebapp.shared.test.H2Test;
 
 class PersonServiceTest extends H2Test {
@@ -21,19 +22,36 @@ class PersonServiceTest extends H2Test {
 	}
 
 	@Test
-	void test() throws PersonServiceException {
+	void testCreate() throws PersonServiceException {
 		// given
-		PersonCreateDto build = PersonCreateDto.builder()
-				.name("Janusz")
-				.surname("Nosacz")
-				.email("xxx@gmail.com")
-				.build();
-		
+		PersonSaveDto build = PersonTestSample.createPersonSaveDtoSampleJanuszNosacz();
+
 		// when
 		Long create = service.create(build);
-		
-		// then 
+
+		// then
 		Assertions.assertNotNull(create);
 	}
 
+	@Test
+	void testUpdate() throws PersonServiceException {
+
+		// given
+		PersonSaveDto dto = PersonTestSample.createPersonSaveDtoSampleJanuszNosacz();
+		Long personId = service.create(dto);
+
+		// when
+		PersonSaveDto dtoUpdate = PersonTestSample.createPersonSaveDtoSampleJanuszNosaczUpdate();
+		service.update(personId, dtoUpdate);
+
+		// then
+		Optional<PersonDto> findById = service.findById(personId);
+		Assertions.assertTrue(findById.isPresent());
+
+		PersonDto personDto = findById.get();
+		PersonSaveDto saveDto = PersonUtil.personDtoToPersonSaveDto().apply(personDto);
+		Assertions.assertTrue(saveDto.equals(dtoUpdate));
+		Assertions.assertFalse(saveDto.equals(dto));
+
+	}
 }
