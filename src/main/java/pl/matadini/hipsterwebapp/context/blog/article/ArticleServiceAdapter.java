@@ -2,8 +2,9 @@ package pl.matadini.hipsterwebapp.context.blog.article;
 
 import java.util.List;
 
-import pl.matadini.hipsterwebapp.context.blog.article.dto.ArticleAuthorDto;
-import pl.matadini.hipsterwebapp.context.blog.article.dto.ArticleSaveDto;
+import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleAuthorDto;
+import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleAuthorWithArticlesDto;
+import pl.matadini.hipsterwebapp.context.blog.article.dto.write.ArticleSaveDto;
 
 class ArticleServiceAdapter implements ArticleService {
 
@@ -15,6 +16,12 @@ class ArticleServiceAdapter implements ArticleService {
 
 	@Override
 	public List<ArticleAuthorDto> getArticleAuthors() throws ArticleServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ArticleAuthorWithArticlesDto> getAuthorsWithArticles() throws ArticleServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}

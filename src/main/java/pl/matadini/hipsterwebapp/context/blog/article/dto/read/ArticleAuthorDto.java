@@ -1,4 +1,4 @@
-package pl.matadini.hipsterwebapp.context.blog.article.dto;
+package pl.matadini.hipsterwebapp.context.blog.article.dto.read;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

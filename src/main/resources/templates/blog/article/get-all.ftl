@@ -6,7 +6,19 @@
 	crossorigin="anonymous">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 </head>
+
+<script>
+jQuery(document).ready(function($){
+  op = function(obj) {
+    $(obj).stop().slideToggle();
+    };
+});
+
+
+</script>
+
 <body>
 
 	<div class="container">
@@ -29,36 +41,42 @@
 
 		<h3>${info}</h3>
 
-		<table class="table">
-
-			<thead>
-				<tr>
-					<th scope="col">Author ID</th>
-					<th scope="col">Name</th>
-					<th scope="col">Surname</th>
-					<th scope="col">E-mail</th>
-					<th scope="col">Birth date</th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-				</tr>
-			</thead>
-
-			<tbody>
+		<div class="form-group">
+		
+			<ul>
 				<#list authors as author>
+				
 
-				<tr>
-					<td>${author.authorId}</td>
-					<td>${author.name}</td>
-					<td>${author.surname}</td>
-					<td>${author.email}</td>+
-					<td>${author.birthDate}</td>
-					<td><a href="/author/edit/${author.authorId}" class="btn btn-secondary">Edit</a></td>
-					<td><a href="/author/delete/${author.authorId}" class="btn btn-danger">Delete</a></td>
-				</tr>
+					<li class="navbar-nav">
+					
+						<a href="#" onClick="op('#${author.articleAuthorId}');">${author.name}</a>
+						<div id="${author.articleAuthorId}" style="display: none;">
+						
+						<ul>
+							<#list author.articles as article>
+								
+								<li class="navbar-nav">
+								
+									<a href="#" onClick="op('#${article.viewUUID}');">${article.title}</a>
+							
+									<div id="${article.viewUUID}" style="display: none;">
+										${article.content}
+									</div>
+									
+								</li>
+								
+							</#list>
+						</ul>
+							
+						</div>
+					</li>
+					
 				</#list>
+			</ul>
+			
+		</div>
 
-			</tbody>
-		</table>
+
 	</div>
 </body>
 </html>

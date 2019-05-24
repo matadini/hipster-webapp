@@ -4,18 +4,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 
-<script>
-jQuery(document).ready(function($){
-  op = function(obj) {
-    $(obj).stop().slideToggle();
-    };
-});
-</script>
+
 
 <body>
 
@@ -40,16 +33,6 @@ jQuery(document).ready(function($){
 		<h2>Add new author</h2>
 
 
-			<div class="form-group">
-				<#list authors as item>
-					<div class="navbar-nav">
-						<a href="#" onClick="op('#${item.articleAuthorId}');">${item.name}</a>
-						<div id="${item.articleAuthorId}" style="display: none;">
-							Ukryta tresc: ${item.surname}
-						</div>
-					</div>
-				</#list>
-			</div>
 
 
 					
@@ -60,7 +43,7 @@ jQuery(document).ready(function($){
 				<select id="authors-id" name="authors-id" class="form-control">
 				
 					<#list authors as item>
-						<option value="${item.articleAuthorId}"> ${item.name} + ${item.surname} </option>
+						<option value="${item.articleAuthorId}"> ${item.name} ${item.surname} </option>
 					</#list>
 					
 				</select>

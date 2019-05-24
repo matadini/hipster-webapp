@@ -1,4 +1,4 @@
-package pl.matadini.hipsterwebapp.context.blog.article.dto;
+package pl.matadini.hipsterwebapp.context.blog.article.dto.write;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
