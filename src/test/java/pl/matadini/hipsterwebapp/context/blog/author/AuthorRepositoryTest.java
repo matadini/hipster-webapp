@@ -2,6 +2,7 @@ package pl.matadini.hipsterwebapp.context.blog.author;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -64,9 +65,32 @@ class AuthorRepositoryTest extends H2Test {
 		Assertions.assertEquals("new-name", entityRead.getName());
 	}
 
-//	@Test
+	@Test
 	void testDelete() {
-		fail("Not yet implemented");
+		
+		// given
+		Author save = authorRepository.save(AuthorTestSampleFactory.createStandardEntity());
+		
+		// when
+		authorRepository.delete(save);
+		
+		// then
+		Long count = authorRepository.count();
+		Assertions.assertEquals(0, count.longValue());
+	}
+	@Test
+	void testDeleteAll() {
+
+		// given
+		authorRepository.save(AuthorTestSampleFactory.createStandardEntity());
+		authorRepository.save(AuthorTestSampleFactory.createStandardEntity());
+		
+		// when
+		authorRepository.deleteAll();
+		
+		// then
+		Long count = authorRepository.count();
+		Assertions.assertEquals(0, count.longValue());
 	}
 
 	@Test
@@ -82,10 +106,18 @@ class AuthorRepositoryTest extends H2Test {
 		Assertions.assertEquals(2, count.longValue());
 	}
 
-	
-//	@Test
+	@Test
 	void testGetAll() {
-		fail("Not yet implemented");
+		// given
+		Author save0 = authorRepository.save(AuthorTestSampleFactory.createStandardEntity());
+		Author save1 = authorRepository.save(AuthorTestSampleFactory.createStandardEntity());
+
+		// when
+		List<Author> findAll = authorRepository.findAll();
+
+		// then
+		Assertions.assertTrue(findAll.contains(save0));
+		Assertions.assertTrue(findAll.contains(save1));
 	}
 
 }

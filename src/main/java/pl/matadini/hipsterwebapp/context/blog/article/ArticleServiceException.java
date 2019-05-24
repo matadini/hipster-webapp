@@ -1,6 +1,6 @@
 package pl.matadini.hipsterwebapp.context.blog.article;
 
-class ArticleServiceException extends Exception {
+public class ArticleServiceException extends Exception {
 
 	/**
 	 * 

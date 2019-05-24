@@ -5,7 +5,7 @@ import java.util.List;
 import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorDto;
 import pl.matadini.hipsterwebapp.context.blog.author.dto.AuthorSaveDto;
 
-interface AuthorService {
+public interface AuthorService {
 
 	Long addAuthor(AuthorSaveDto data) throws AuthorServiceException;
 

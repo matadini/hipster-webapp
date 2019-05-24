@@ -1,6 +1,6 @@
 package pl.matadini.hipsterwebapp.context.blog.author;
 
-class AuthorServiceException extends Exception {
+public class AuthorServiceException extends Exception {
 
 	/**
 	 * 

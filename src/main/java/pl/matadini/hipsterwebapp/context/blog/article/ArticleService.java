@@ -6,7 +6,7 @@ import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleAuthorDto;
 import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleAuthorWithArticlesDto;
 import pl.matadini.hipsterwebapp.context.blog.article.dto.write.ArticleSaveDto;
 
-interface ArticleService {
+public interface ArticleService {
 
 	Long createArticle(Long articleAuthorId, ArticleSaveDto data) throws ArticleServiceException;
 

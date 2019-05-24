@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import lombok.AllArgsConstructor;
@@ -28,8 +30,12 @@ class AuthorRepositoryImpl implements AuthorRepository {
 
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
-
+		Query query = entityManager.createQuery("delete from Author a");
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		query.executeUpdate();
+		transaction.commit();
 	}
 
 	@Override

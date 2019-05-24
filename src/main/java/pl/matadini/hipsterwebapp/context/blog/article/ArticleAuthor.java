@@ -43,4 +43,12 @@ class ArticleAuthor {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleAuthor")
 	Set<Article> articles = Sets.newHashSet();
+
+	public ArticleAuthor(String name, String surname) {
+		super();
+		this.name = name;
+		this.surname = surname;
+	}
+	
+	
 }

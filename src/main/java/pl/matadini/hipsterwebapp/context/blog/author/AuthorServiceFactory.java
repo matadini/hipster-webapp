@@ -11,9 +11,9 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class AuthorServiceFactory {
+public class AuthorServiceFactory {
 
-	static AuthorService create(EntityManagerFactory entityManagerFactory) {
+	public static AuthorService create(EntityManagerFactory entityManagerFactory) {
 
 		ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 		Validator validator = validatorFactory.getValidator();
