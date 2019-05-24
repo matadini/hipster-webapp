@@ -64,7 +64,7 @@ class AuthorRepositoryTest extends H2Test {
 		Assertions.assertEquals("new-name", entityRead.getName());
 	}
 
-	@Test
+//	@Test
 	void testDelete() {
 		fail("Not yet implemented");
 	}
@@ -82,7 +82,8 @@ class AuthorRepositoryTest extends H2Test {
 		Assertions.assertEquals(2, count.longValue());
 	}
 
-	@Test
+	
+//	@Test
 	void testGetAll() {
 		fail("Not yet implemented");
 	}

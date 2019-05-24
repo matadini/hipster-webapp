@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
 
 			<div class="form-group">
 				<#list authors as item>
-					<div class="form-group">
+					<div class="navbar-nav">
 						<a href="#" onClick="op('#${item.articleAuthorId}');">${item.name}</a>
 						<div id="${item.articleAuthorId}" style="display: none;">
 							Ukryta tresc: ${item.surname}

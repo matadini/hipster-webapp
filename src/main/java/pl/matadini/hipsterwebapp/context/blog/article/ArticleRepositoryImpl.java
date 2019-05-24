@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import lombok.AllArgsConstructor;
+import pl.matadini.hipsterwebapp.shared.jpa.JpaRepositoryUtil;
 
 @AllArgsConstructor
 class ArticleRepositoryImpl implements ArticleRepository {
@@ -14,38 +16,36 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return null;
+		String qlString = "select count(a.articleId) from Article a";
+		TypedQuery<Long> createQuery = entityManager.createQuery(qlString, Long.class);
+		return createQuery.getSingleResult();
 	}
 
 	@Override
 	public void delete(Article entity) {
-		// TODO Auto-generated method stub
-
+		JpaRepositoryUtil.delete(entity, entityManager);
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public List<Article> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String qlString = "select a from Article a order by a.articleId";
+		TypedQuery<Article> query = entityManager.createQuery(qlString, Article.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public Optional<Article> findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(entityManager.find(Article.class, id));
 	}
 
 	@Override
 	public Article save(Article entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return JpaRepositoryUtil.merge(entity, entityManager);
 	}
 
 }
