@@ -13,7 +13,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-			<a class="navbar-brand" href="/article/">Hipster-WebApp: Articles</a>
+			<a class="navbar-brand" href="/article/">Hipster-WebApp</a>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -24,6 +24,15 @@
 				</ul>
 
 			</div>
+			
+						<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link active" href="/person/">Person</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active" href="/author/">Author</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active"
+					href="/article/">Article</a></li>
+			</ul>
 		</nav>
 
 

@@ -20,7 +20,7 @@ class Author {
 
 	@Id
 	@Column(name = "author_id", nullable = false, unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long authorId;
 
 	@Column(name = "name", nullable = false)

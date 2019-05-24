@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import com.google.common.collect.Lists;
 
 import freemarker.template.Configuration;
+import pl.matadini.hipsterwebapp.context.admin.AdminFacade;
 import pl.matadini.hipsterwebapp.context.blog.article.ArticleFacade;
 import pl.matadini.hipsterwebapp.context.blog.author.AuthorFacade;
 import pl.matadini.hipsterwebapp.context.person.PersonFacade;
@@ -25,6 +26,7 @@ public class Main {
 		Service service = Service.ignite().port(8080);
 
 		List<SparkController> controllers = Lists.newArrayList(
+				AdminFacade.create(entityManagerFactoryH2),
 				ArticleFacade.create(entityManagerFactoryH2, configuration),
 				AuthorFacade.create(entityManagerFactoryH2, configuration),
 				PersonFacade.create(entityManagerFactoryH2, configuration));

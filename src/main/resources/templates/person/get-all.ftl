@@ -32,7 +32,8 @@ function editPerson(id) {
 
 				<ul class="navbar-nav mr-auto">
 
-					</a></li>
+					</a>
+					</li>
 
 					<li class="nav-item"><a class="nav-link" href="/person/create">Create</a>
 					</li>
@@ -42,6 +43,15 @@ function editPerson(id) {
 				</ul>
 
 			</div>
+
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link active" href="/person/">Person</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active" href="/author/">Author</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active"
+					href="/article/">Article</a></li>
+			</ul>
 		</nav>
 
 		<h3>${info}</h3>
@@ -67,8 +77,10 @@ function editPerson(id) {
 					<td>${person.name}</td>
 					<td>${person.surname}</td>
 					<td>${person.email}</td>
-					<td><a href="/person/edit/${person.personId}" class="btn btn-secondary">Edit</a></td>
-					<td><a href="/person/delete/${person.personId}" class="btn btn-danger">Delete</a></td>
+					<td><a href="/person/edit/${person.personId}"
+						class="btn btn-secondary">Edit</a></td>
+					<td><a href="/person/delete/${person.personId}"
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 				</#list>
 

@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -21,7 +23,7 @@ class Article {
 
 	@Id
 	@Column(nullable = false, unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long articleId;
 
 	@Column(nullable = false)
@@ -30,7 +32,6 @@ class Article {
 	@Column(nullable = false)
 	String content;
 
-	//@Column(nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "author_id", nullable = false)
 	ArticleAuthor articleAuthor;

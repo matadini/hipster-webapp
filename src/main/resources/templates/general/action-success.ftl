@@ -20,16 +20,26 @@
 				<ul class="navbar-nav mr-auto">
 
 					<li class="nav-item"><a class="nav-link" href="${link}create">Create</a></li>
-					<li class="nav-item"><a class="nav-link"href="${link}get-all">Get All</a></li>
-					
+					<li class="nav-item"><a class="nav-link" href="${link}get-all">Get
+							All</a></li>
+
 				</ul>
 
 			</div>
+
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link active" href="/person/">Person</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active" href="/author/">Author</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active"
+					href="/article/">Article</a></li>
+			</ul>
 		</nav>
 
-	Message: ${info}
+		Message: ${info}
 	</div>
-	
+
 
 </body>
 </html>

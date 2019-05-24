@@ -58,7 +58,7 @@ class ArticleControllerImpl implements ArticleController {
 			/*
 			 * Data
 			 */
-			ArticleService service = ArticleServiceStub.createGetAllStub();
+			ArticleService service = ArticleServiceFactory.create(entityManagerFactory);
 			List<ArticleAuthorWithArticlesDto> authorsWithArticles = service.getAuthorsWithArticles();
 
 			/*
@@ -81,7 +81,7 @@ class ArticleControllerImpl implements ArticleController {
 	public Object createGet(Request request, Response response) {
 		try {
 
-			ArticleService service = ArticleServiceStub.createGetArticleAuthors();
+			ArticleService service = ArticleServiceFactory.create(entityManagerFactory);
 			List<ArticleAuthorDto> articleAuthors = service.getArticleAuthors();
 
 			Map<String, Object> data = Maps.newHashMap();
@@ -102,6 +102,9 @@ class ArticleControllerImpl implements ArticleController {
 
 		try {
 
+			/*
+			 * Parse data 
+			 */
 			String title = request.queryParams("title");
 			String content = request.queryParams("content");
 			Long articleAuthorId = Long.valueOf(request.queryParams("authors-id"));
@@ -112,11 +115,24 @@ class ArticleControllerImpl implements ArticleController {
 					.articleAuthorId(articleAuthorId)
 					.build();
 
+			/*
+			 * Create article
+			 */
 			ArticleService service = ArticleServiceFactory.create(entityManagerFactory);
-			service.createArticle(articleAuthorId, data);
+			Long createArticle = service.createArticle(articleAuthorId, data);
 
-			Logger.info("{} {} {}", title, content, articleAuthorId);
+			Logger.info("{} {} {}", title, articleAuthorId, createArticle);
 
+			/*
+			 * Prepare view
+			 */
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("info", "Created article ID: " + createArticle);
+			map.put("link", "/article/"); 
+			
+			Template template = configuration.getTemplate("templates/general/action-success.ftl");
+			template.process(map, response.raw().getWriter());
+			
 		} catch (Exception e) {
 			Logger.error(e);
 		}

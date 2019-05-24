@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleAuthorDto;
 import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleAuthorWithArticlesDto;
 import pl.matadini.hipsterwebapp.context.blog.article.dto.read.ArticleDto;
 
@@ -22,6 +23,16 @@ class ArticleUtil {
 				.build();
 	}
 
+	static Function<? super ArticleAuthor, ? extends ArticleAuthorDto> articleAuthorToArticleAuthorDto() {
+		return x -> {
+			return ArticleAuthorDto.builder()
+					.articleAuthorId(x.getArticleAuthorId())
+					.name(x.getName())
+					.surname(x.getSurname())
+					.build();
+		};
+	}
+	
 	static Function<? super ArticleAuthor, ? extends ArticleAuthorWithArticlesDto> authorToAuthorWithArticles() {
 
 		Function<? super Article, ? extends ArticleDto> mapperArticles = ArticleUtil.articleToArticleDto();

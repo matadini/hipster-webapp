@@ -1,5 +1,6 @@
 package pl.matadini.hipsterwebapp.context.blog.article;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +34,7 @@ class ArticleAuthor {
 
 	@Id
 	@Column(name = "author_id", nullable = false, unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long articleAuthorId;
 
 	@Column(name = "name", nullable = false)
@@ -41,8 +43,8 @@ class ArticleAuthor {
 	@Column(name = "surname", nullable = false)
 	String surname;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleAuthor")
-	Set<Article> articles = Sets.newHashSet();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "articleAuthor")
+	List<Article> articles = Lists.newArrayList(); 
 
 	public ArticleAuthor(String name, String surname) {
 		super();

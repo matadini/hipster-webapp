@@ -9,6 +9,8 @@
 </head>
 <body>
 
+
+
 	<div class="container">
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,6 +31,15 @@
 				</ul>
 
 			</div>
+
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link active" href="/person/">Person</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active" href="/author/">Author</a>
+				</li>
+				<li class="nav-item"><a class="nav-link active" href="/article/">Article</a>
+				</li>
+			</ul>
 		</nav>
 
 

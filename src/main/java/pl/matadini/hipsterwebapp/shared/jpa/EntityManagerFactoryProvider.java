@@ -24,6 +24,10 @@ public class EntityManagerFactoryProvider {
 		properties.put("eclipselink.ddl-generation", "create-tables");
 		properties.put("eclipselink.ddl-generation.output-mode", "database");
 
+		properties.put("show_sql", "true");
+		properties.put("format_sql", "true");
+		properties.put("use_sql_comments", "true");
+
 		return Persistence.createEntityManagerFactory("H2PU", properties);
 	}
 }
