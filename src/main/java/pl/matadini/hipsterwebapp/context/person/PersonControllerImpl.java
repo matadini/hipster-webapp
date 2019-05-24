@@ -60,7 +60,7 @@ class PersonControllerImpl implements PersonController {
 			 */
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("info", "Created user ID: " + personId);
-			map.put("link", "/person"); 
+			map.put("link", "/person/"); 
 			
 			Template template = configuration.getTemplate("templates/general/action-success.ftl");
 			template.process(map, response.raw().getWriter());
@@ -190,7 +190,7 @@ class PersonControllerImpl implements PersonController {
 			 */
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("info", "Edition saved successfuly");
-			map.put("link", "/person"); 
+			map.put("link", "/person/"); 
 			
 			Template template = configuration.getTemplate("templates/general/action-success.ftl");
 			template.process(map, response.raw().getWriter());

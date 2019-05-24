@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
-import javax.swing.text.AbstractDocument.Content;
 
 import org.pmw.tinylog.Logger;
 
